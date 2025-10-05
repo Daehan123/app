@@ -1,0 +1,31 @@
+# 도형 그림그리기
+import turtle as t
+t.shape("turtle")
+
+n = 1
+
+while n != 0 :
+
+    t.up()
+    t.goto(-100,200)
+    t.down()
+    n= int(t.textinput("","몇각형을 그릴까요?" ))
+
+    if n == 0 :
+        break
+
+    elif n < 3 or n > 6 :
+        t.write("잘못된 입력값입니다")
+
+    else :
+        t.reset()
+        angle = 360/n
+        t.up()
+        t.goto(0, -200)
+        t.down()
+        for i in range(n) :
+            t.fd(100)
+            t.left(angle)
+
+t.write("프로그램을 종료합니다")
+t.done()
