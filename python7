@@ -1,0 +1,26 @@
+import random as r
+
+operators = ['+', '-', '*', '/']
+
+num1 = r.randint(1, 10)
+num2 = r.randint(10, 99)
+op = r.choice(operators)
+
+print("문제:", num1, op, num2)
+
+if op == '+':
+    answer = num1 + num2
+elif op == '-':
+    answer = num1 - num2
+elif op == '*':
+    answer = num1 * num2
+elif op == '/':
+    answer = round(num1 / num2, 2)
+
+user_answer = float(input("정답을 입력하세요: "))
+
+while user_answer != answer:
+    print("틀렸습니다. 다시 시도하세요.")
+    user_answer = float(input("정답을 입력하세요: "))
+
+print("정답입니다! 프로그램을 종료합니다.")
