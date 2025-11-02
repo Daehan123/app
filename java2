@@ -1,0 +1,33 @@
+package sec02;
+
+import java.awt.Color;
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class Frame4 extends JFrame{
+
+	
+	//생성자 정의
+	Frame4(){
+		setTitle("My Piano");
+		setSize(700, 250);
+		setLayout(new GridLayout(0, 8));
+		// 문자열 배열 선언
+		String [] text= {"도", "레", "미", "파", "솔", "라", "시", "도"};
+		// 버튼컴포넌트 생성(JButton)
+		for(String t:text) {
+			JButton btn = new JButton(t);
+			btn.setBackground(Color.WHITE);
+			add(btn);
+		}
+		// 윈도우 보이기
+		setVisible(true);
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new Frame4();
+	}
+
+}
