@@ -1,0 +1,72 @@
+# 1. 학생 정보를 입력받아 반환하는 함수
+def student_scores(num_students):
+    """
+    지정된 학생 수만큼 이름과 과목 점수를 입력받아 리스트로 반환합니다.
+    """
+    students = []
+    # 학생 정보 입력 받기
+    for i in range(num_students):
+        name = input(f"{i+1}번째 학생 이름 입력: ")
+        # 각 과목 점수 입력받아 정수형 변환
+        kor = int(input("국어 점수 입력: "))
+        eng = int(input("영어 점수 입력: "))
+        math = int(input("수학 점수 입력: "))
+        students.append([name, kor, eng, math])
+    return students
+
+def report():
+    print("\n성명           국어    영어    수학   총점     평균")
+
+# 3. 학생별 성적 총점/평균을 계산하고 출력하는 함수
+def score_sum(students, num_students):
+    """
+    학생 리스트를 받아 학생별 총점/평균을 출력하고,
+    과목별 전체 총점/평균을 계산하여 출력합니다.
+    """
+    # 총점과 평균 계산 변수 초기화
+    total_kor = 0
+    total_eng = 0
+    total_math = 0
+    total_sum = 0
+    total_avg_sum = 0
+
+    # 학생별 총점과 평균 계산 및 출력
+    for student in students:
+        name, kor, eng, math = student
+        total = kor + eng + math
+        avg = total / 3
+        total_kor += kor
+        total_eng += eng
+        total_math += math
+        total_sum += total
+        total_avg_sum += avg
+        
+        print(f"{name:<14}{kor:<8}{eng:<8}{math:<8}{total:<8}{avg:.1f}")
+
+    print("="*35)
+
+    # 과목별 평균 계산
+    avg_kor = total_kor / num_students
+    avg_eng = total_eng / num_students
+    avg_math = total_math / num_students
+    avg_avg = total_avg_sum / num_students # 기존 로직 유지
+
+    # 총점/평균 출력
+    print(f"총점/평균     {total_kor}/{avg_kor:.1f}  {total_eng}/{avg_eng:.1f}  {total_math}/{avg_math:.1f}")
+
+
+# === 메인 실행 부분 ===
+def main():
+    # 학생 수
+    num_students = 3
+    
+    # 1. 학생 정보 입력 받기
+    students_list = student_scores(num_students)
+
+    report()
+
+    score_sum(students_list, num_students)
+
+# 이 스크립트 파일이 직접 실행될 때만 main() 함수를 호출
+if __name__ == "__main__":
+    main()
