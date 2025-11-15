@@ -1,0 +1,99 @@
+#물품등록
+def insert_item() :
+    if len(item_dict) >= 50:
+        print("이미 등록된 재고 물품이 50개 넘음!")
+        return
+    while True :
+        item_key = input("물품명: ")
+        if item_key in item_dict.keys() :
+            print("이미 있는 물품임!")
+            continue
+        else :
+            break
+
+    item_dict[item_key] = int(input("재고량: "))
+#재고량 증가
+def inc_cnt() :
+    while True :
+        item_key = input("물품명을 입력하세요: ")
+        if item_key not in item_dict.keys() :
+            print(f"{item_key}없는 물품임!")
+            continue
+        else :
+            break
+    inc_cnt = int(input("재고 증가량: "))
+    if item_dict[item_key] - dec_cnt < 0 :
+        print("재고량이 음수가 됩니다")
+        return
+    item_dict[item_key] += inc_cnt
+    return
+
+#재고량 감소
+def dec_cnt() :
+    while True :
+        item_key = input("물품명을 입력하세요: ")
+        if item_key not in item_dict.keys() :
+            print(f"{item_key}없는 물품임!")
+            continue
+        else :
+            break
+    dec_cnt = int(input("재고 감소량: "))
+    if item_dict[item_key] - dec_cnt < 0 :
+        print("재고량이 음수가 됩니다")
+        return
+    item_dict[item_key] -= dec_cnt
+    return
+
+#물품삭제
+def delete_print() :
+    while True :
+        item_key = input("물품명을 입력하세요: ")
+        if item_key not in item_dict.keys() :
+            print(f"{item_key}는 없는 물품임!")
+            continue
+        else :
+            break
+    del item_dict[item_key]
+    print("물품삭제 완료")
+#전체물품 출력
+def all_item_print() :
+    for item_key in sorted(item_dict.keys()) :
+        print("%7s\t%5d" %(item_key, item_dict[item_key]) )
+        
+# 재고량이 0인 물품 출력
+def zero_item_print():
+    zero_items = [key for key, value in item_dict.items() if value == 0]
+    if not zero_items:
+        print("재고량이 0인 물품은 없습니다.")
+    else:
+        print("재고량이 0인 물품 목록:")
+        for item_key in sorted(zero_items):
+            print("%7s\t%5d" % (item_key, item_dict[item_key]))
+            
+#전역변수 생성
+msg = "1. 물품등록 2. 재고량 증가 3. 재고량 감소 4. 물품삭제 5. 전체물품 출력 6.재고량이 0인 물품 출력 7. 종료: "
+item_dict = {}
+
+# 소스가 긴 경우 여기부터 실행문장 시작이라고 소스를 읽는 다른 프로그래머에게 알리는 관용구
+if __name__=='__main__' :
+    while True:
+        n = int(input(msg))
+
+        if n == 1:
+            insert_item()
+        elif n == 2:
+            inc_cnt()
+        elif n == 3:
+            dec_cnt()
+        elif n == 4:
+            delete_print()
+        elif n == 5:
+            all_item_print()
+        elif n == 6:
+            zero_item_print()
+        elif n == 7:
+            print("프로그램 종료\n")
+            break
+        else :
+            print("1~6중에서 선택하세요\n")
+
