@@ -1,0 +1,21 @@
+num = int(input("2 이상의 정수를 입력하세요: "))
+op = input("연산자를 입력하세요 (+ 또는 *): ")
+
+def sum(num): #연산자가 '+'일 경우 합 구하기
+    result = 0
+    for i in range(1, num+1):
+        result += i
+    return result
+
+def fac(num): #연산자가 '*'일 경우 곱 구하기
+    result = 1
+    for i in range(1, num+1):
+        result *= i
+    return result
+
+if op == '+': #입력 받은 연산자에 따라 함수 계산 결과 출력
+    print(f"{sum(num)}")
+elif op == '*':
+    print(f"{fac(num)}")
+else :
+    print("잘못된 연산자입니다.")
